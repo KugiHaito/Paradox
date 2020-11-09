@@ -1,0 +1,220 @@
+/** Base Colors */
+$primary: #F8C10A;
+$secondary: #EEFF41;
+$third: #0F0F0F;
+
+/** Layout */
+$columns: 12 !default;
+$margin-layout: (
+    desktop: 10em,
+    laptop: 5em,
+    tablet: 3em,
+    mobile: 20px
+) !default;
+$gutter: 20px !default;
+
+/** Colors */
+$colors: (
+    primary: (
+        base: $primary,
+        light: lighten($primary, 15%),
+        dark: darken($primary, 15%),
+        snow: transparentize($primary, 0.1),
+        disappear: transparentize($primary, 0.8),
+        glass: transparentize($primary, 0.5)
+    ),
+    secondary: (
+        base: $secondary,
+        light: lighten($secondary, 15%),
+        dark: darken($secondary, 15%),
+        snow: transparentize($secondary, 0.1),
+        disappear: transparentize($secondary, 0.8),
+        glass: transparentize($secondary, 0.5)
+    ),
+    third: (
+        base: $third,
+        light: lighten($third, 15%),
+        dark: darken($third, 15%),
+        snow: transparentize($third, 0.1),
+        disappear: transparentize($third, 0.8),
+        glass: transparentize($third, 0.5)
+    ),
+    silvery: (
+        base: #F7F7F7,
+        dark: darken(#F7F7F7, 15%),
+        glass: transparentize(#F7F7F7, 0.2)
+    ),
+    dark: (
+        base: #212121,
+        dark: darken(#212121, 15%),
+        glass: transparentize(#212121, 0.2)
+    ),
+    success: (
+        base: #5CB85C
+    ),
+    warning: (
+        base: #FFCA28
+    ),
+    danger: (
+        base: #D9534F
+    ),
+    info: (
+        base: #31B0D5
+    )
+);
+
+/** Typography */
+$fonts: (
+   headline-1: (
+        font-size: 96px,
+        font-weight: 300,
+        letter-spacing: -.15rem,
+        text-transform: capitalize
+    ),
+   headline-2: (
+        font-size: 60px,
+        font-weight: 300,
+        letter-spacing: -.25rem,
+        text-transform: capitalize
+    ),
+   headline-3: (
+        font-size: 48px,
+        font-weight: normal,
+        letter-spacing: -.1rem,
+        text-transform: capitalize
+    ),
+   headline-4: (
+        font-size: 34px,
+        font-weight: normal,
+        letter-spacing: -.05rem,
+        text-transform: capitalize
+    ),
+   headline-5: (
+        font-size: 24px,
+        font-weight: normal,
+        letter-spacing: 0,
+        text-transform: capitalize
+    ),
+   headline-6: (
+        font-size: 20px,
+        font-weight: 600,
+        letter-spacing: 0.10rem,
+        text-transform: capitalize
+    ),
+    title: (
+        font-size: 30px,
+        font-weight: normal,
+        letter-spacing: -.05rem,
+        text-transform: capitalize
+    ),
+    subtitle-1: (
+        font-size: 16px,
+        font-weight: normal,
+        letter-spacing: 0.03rem,
+        text-transform: capitalize
+    ),
+    subtitle-2: (
+        font-size: 14px,
+        font-weight: 600,
+        letter-spacing: 0.08rem,
+        text-transform: capitalize
+    ),
+    subtitle-3: (
+        font-size: 18px,
+        font-weight: 400,
+    ),
+    subtitle-4: (
+        font-size: 14px,
+        font-weight: 400,
+        letter-spacing: 0.08rem,
+        text-transform: capitalize
+    ),
+    body-1: (
+        font-size: 16px,
+        font-weight: normal,
+        letter-spacing: 0.1rem,
+        text-transform: capitalize
+    ),
+    body-2: (
+        font-size: 14px,
+        font-weight: normal,
+        letter-spacing: 0.10rem,
+        text-transform: capitalize
+    ),
+    caption: (
+        font-size: 12px,
+        font-weight: normal,
+        letter-spacing: 0.05rem,
+        text-transform: capitalize
+    ),
+    lead-1: (
+        font-size: 20px,
+        line-height: 1.3em,
+        font-weight: normal,
+        white-space: pre-line,
+        text-transform: capitalize,
+    ),
+    lead-2:(
+        font-size: 26px,
+        font-weight: lighter
+    ),
+    small-text: (
+        font-size: 10px,
+        font-weight: normal,
+        letter-spacing: 0.05rem,
+        text-transform: capitalize
+    ),
+    overline: (
+        font-size: 10px,
+        font-weight: normal,
+        letter-spacing: .10rem,
+        text-transform: uppercase
+    ),
+    text-normal: (
+        text-transform: initial
+    ),
+    text-lower: (
+        text-transform: lowercase
+    ),
+    text-upper: (
+        text-transform: uppercase
+    ),
+    text-black: (
+        font-weight: 900
+    ),
+    text-bold: (
+        font-weight: 700
+    ),
+    text-regular: (
+        font-weight: 400
+    ),
+    text-medium: (
+        font-weight: 500
+    ),
+    text-light: (
+        font-weight: 300
+    ),
+    text-thin: (
+        font-weight: 100
+    ),
+    text-end: (
+        justify-content: flex-end
+    ),
+    text-center: (
+        text-align: center
+    ),
+    text-right: (
+        text-align: right
+    ),
+    text-little: (
+        max-width: 65%,
+        overflow: hidden,
+        text-overflow: ellipsis
+    )
+);
+
+/** Positions */
+$positions: (
+    sides: top bottom left right,
+    type: static absolute fixed
+);

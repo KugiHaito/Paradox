@@ -1,0 +1,103 @@
+/**
+ * Form's and Components
+ */
+
+$input-margin: 5px !default;
+$input-radio: 20px !default;
+$radio-size: 20px !default;
+$radio-checked-size: ($radio-size - 5) !default;
+$radio-checked-color: color(primary, base) !default; 
+$radio-checked-border-color: color(primary, base) !default; 
+$radio-border-color: rgba(0,0,0,.3) !default;
+
+// General Style
+input {
+    width: auto;
+    height: 40px;
+    margin: $input-margin;
+    padding: 10px 35px;
+    font-size: 1em;
+    border: none; // reset
+    border-radius: $input-radio;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    border: 2px solid transparent;
+    @include transition;
+    @include theme-colors(input-border, (properties:border-color));
+    @include  breakpoint(phone) {
+        padding: 5px 15px;
+        margin: ($input-margin/2);
+    }
+}
+
+input[type='search'] {
+    background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAADf0lEQVR4AeyaA/DdThDHt3YHf7M2kttv7fZ1WNsd1e0YtUe13THrdlTbtm3bTK295+TyUz47etrL97KX27d7FBAQEBAQEBAQkCxl/+M+mIwF2Myn+QU/wVnehAWYzH2sfyh1YymM4ANwoth+jABTasSuzrvhxGe8265OqYlyhbEUToK2VBWgVEEWjMArOIkbv8AIykIpC/7i7XCSN96Ovyjl4Cq4A8el3eEqlDKgPV7D8cBeoz35j6oaJfLv8BSuV76s+rtgzoI58ZdVRoUwme9F/P4rVZX8xS4Y6XJ4BZoiG4UB2dCUV0T41b3yhcg/kC3CdrUqdjyjBlaFlXBAyjYIxoaN5FYUJ6pz2PAbR/5gVeJ3egjY1SgBUEMPQX5nVSIfyMTHtLl7YBejBLGL4YEm4RhlItOoxvrMqfpJeaqv30nVmEzDGzQBA5P2NVD6wnrT8V9cG3IfuQB7NX8lySQ8Wg7oLhGwq2n+RpNJcE0Mt4xcwsuEx6tkjvIl5HzZdcglqOtjEHF3MdRdDx57mbSMtpc5ATPFUHPIAzBXeJ1hTsBGMZQnabBqJ1bBRnMCLohtp5YnAmqJablIppD5i1XcyN5yl0wht/4S+cgDSuQTIfSWTCGT4DJ5yQPK5JWJeVoPoYdkClwUi7g2eYCqLQRcNidgvYjWDt5UN4TXDeYEzBBzNdfIRjbXv1TijgelwSy4K+5AVzIFSmr/oELkEhWSPq0yZA6+ZTqdxjUyCY/REupq7qqr0h9PIYnZIMJeV/72aQJAZuG1moT+lCTor13+VjINN/KsrBIKUyBrSMbJhCNeFLa4qF7YwhbyA1R2X1q0q4UrLTLIHzAuXHE3/sSCO4RrjfBU8osy2bEfThhbyVXiaMeG7xGcKZrf18ZqMg0OuwnWwQlrz1DS98Z29BaTCpUva/3zb66COdXf5cuqEE8RkoUAP54/YSPZa+Oh5B92NQ/arA/5rXinH/mH9Q9vdXX5F63iaAonBSVQFjWcXyTZH56BX+kDcFJWAqkCSRz2WMlF6QtwUkaCfCrtj3uhblPt6AfgpJAECRgjYxx4OswDUYQEPCylJciF3QeTMf/TkbMnX7apLTxatVR/k8R/Cabg9+3PMREAIADDQDShjBH5jBXAQrmPgjzC7wQEhLkQEBAQ7kMIoJOQ/UpC9nsJe3QVQu1+CO/vS5IkSQd2zX60cmQg4gAAAABJRU5ErkJggg==) no-repeat 10px;
+    background-size: 24px;
+}
+
+input[type='radio'], input[type="checkbox"] {
+    -webkit-appearance: listitem;
+    height: $radio-size;
+    width: ($radio-size+4);
+    margin: 5px;
+    padding: 0;
+    box-shadow: none;
+    &:before, &:after {
+        content: '';
+        display: block;
+        position: relative;
+        margin: -5px -10px;
+        border-radius: 50%;
+        transition: all .3s ease;
+        transition-property: transform, border-color;
+        left: 10px;
+        width: $radio-size;
+        height: $radio-size;
+        border: 2px solid $radio-border-color;
+    }
+    &:after {
+        top: -105%;
+        left: 12px !important;
+        border: none !important;
+        transform: scale(0);
+    }
+    &:checked, &:focus {
+        animation: ripple 0.2s linear forwards;
+        &:after {
+            transform: scale(.7);
+        }
+        &:before {
+            border-color: $radio-checked-border-color;
+        }
+        @include theme-colors($class:radio, $hover-properties:(properties:color), $pseudos:(
+            after: background-color,
+            before: border-color
+        ));
+    }
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+    -webkit-appearance: listbox;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
+}
+
+textarea {
+    @extend input;
+    height: auto !important;
+    resize: none;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}

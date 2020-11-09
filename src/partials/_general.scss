@@ -1,0 +1,117 @@
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: color(primary, base);
+}
+
+::selection {
+    background: rgba(0,0,0,.5);
+    color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: Roboto, "OpenSans", sans-serif;
+    @include border-boxing;
+}
+
+a, button {
+    text-decoration: none;
+    color: inherit;
+    background: none;
+    @include theme-colors(link, (), (properties:color)) {
+        display: flex;
+        align-items: center;
+        transition: all .3s ease-in-out;
+    };
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header, aside, footer {
+    width: 100%;
+    padding: 0 20px;
+    @include breakpoint(phone) {
+        padding: 0 10px;
+    }
+}
+
+main > section,
+main > article {
+    width: 100%;
+    padding: 0 map-get($margin-layout, desktop);
+    @include breakpoint(laptop) {
+        padding: 0 map-get($margin-layout, laptop);
+    }
+    @include breakpoint(tablet) {
+        padding: 0 map-get($margin-layout, tablet);
+    }
+    @include breakpoint(phone) {
+        padding: 0 map-get($margin-layout, mobile);
+    }
+}
+
+footer div {
+    @include breakpoint(tablet) {
+        text-align: center !important;
+    }
+}
+
+.cover,
+.content, .content-flex {
+    @extend %flex;
+    width: 100%;
+}
+.cover {
+    @extend .bg-primary;
+    min-height: 100vh;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+        margin-top: -.2em;
+        text-align: center;
+    }
+    @include breakpoint(phone) {
+        .container, .content {
+            text-align: center;
+        }
+    }
+}
+.container-flex, .content-flex {
+    padding: 0 20px;
+    @include breakpoint(phone) {
+        padding: 0 10px;
+    }
+    @include breakpoint(smallphone) {
+        padding: 0 5px;
+    }
+}
+.container-items, .content-items {
+    padding: 5px;
+    @include breakpoint(phone) {
+        padding: 2px;
+    }
+}
+.container, .content {
+    padding: 40px 0;
+    & .container, & .content {
+        @extend .content-flex;
+        & .container, & .content {
+            padding: 5px;
+        }
+    }
+    @include breakpoint(phone) {
+        padding: 20px 0;
+    }
+}

@@ -1,0 +1,109 @@
+@mixin theme-colors($class: '', $properties:(), $hover-properties:(), $pseudos:(), $sub-elements:()) {
+    @each $ckey, $color in $colors {
+        @each $tkey, $tone in $color {
+            @if $tkey == "base" {
+                $tkey: "";
+            } @else {
+                $tkey: unquote("--"+$tkey);
+            }
+
+            &.#{$class}-#{$ckey}#{$tkey} {
+                @content;
+                @if (map-has-key($properties, auto-color)) {
+                    @include auto-color($tone, 60);
+                }
+                @if map-has-key($properties, properties) {
+                    @each $property in map-get($properties, properties) {
+                        #{$property}: map-get($properties, value) $tone;
+                    }
+                }
+
+                @if $hover-properties {
+                    &:hover,
+                    &:focus {
+                        @content;
+                        @if (map-has-key($hover-properties, auto-color)) {
+                            @include auto-color($tone, 60);
+                        }
+                        @if map-has-key($hover-properties, properties) {
+                            @each $property in map-get($hover-properties, properties) {
+                                #{$property}: map-get($hover-properties, value) $tone;
+                            }
+                        }
+                    }
+                }
+
+                @if $pseudos {
+                    @each $pseudo, $properties in $pseudos {
+                        &:#{$pseudo} {
+                            @each $property in $properties {
+                                #{$property}: $tone;
+                            }
+                        }
+                    }
+                }
+
+                @if $sub-elements {
+                    @each $element, $values in $sub-elements {
+                        .#{$element} {
+                            @if (map-has-key($values, auto-color)) {
+                                @if map-get($values, auto-color) != hover {@include auto-color($tone, 60);} @else {&:hover, &:focus {@include auto-color($tone, 60, true);}}
+                            }
+                            @if (map-has-key($values, properties)) {
+                                @each $property in map-get($values, properties) {
+                                    #{$property}: map-get($values, value) $tone !important;
+                                }
+                            }
+                            &:hover, &:focus {
+                                @if (map-has-key($values, hover)) {
+                                    @each $property in map-get($values, hover) {
+                                        #{$property}: map-get($values, value) $tone !important;
+                                    }
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * helpful mixins
+ */
+@mixin auto-color($color, $level, $important:false) {
+    $important: if($important, !important, '');
+    @if (lightness($color) < $level) {color: #FFFAFF #{$important};} @else {color: #212121 #{$important};}
+}
+
+@mixin breakpoint($point, $inverse:false) {
+    $property: if($inverse, min-width, max-width);
+    @if $point == laptop {
+        @media ($property: 64em) { @content; }
+    }
+    @else if $point == tablet {
+        @media ($property: 48em) { @content; }
+    }
+    @else if $point == phone {
+        @media ($property: 37.5em) { @content; }
+    }
+    @else if $point == smallphone {
+        @media ($property: 25em) { @content; }
+    }
+}
+@mixin border-boxing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin transition($what: all, $time: .3s, $how: ease-in-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+    transition:         $what $time $how;
+}

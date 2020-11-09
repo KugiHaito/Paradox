@@ -1,0 +1,34 @@
+/**
+* Tag Creator
+*/
+.tag-creator {
+    position: absolute;
+    @extend .bg-primary;
+    @extend .col-2;
+    text-align:right;
+    color: #fffaff;
+    padding: 20px;
+    transform: skew(15deg);
+    box-shadow: -2px 5px 15px rgba(0,0,0,.5);
+    div {
+        padding: 0 20px;
+        transform: skewX(-15deg) !important;
+        @include breakpoint(tablet) {
+            padding: 0 10px;
+            transform: none !important;
+        }
+    }
+    @include breakpoint(tablet) {
+        padding: 10px !important;
+        text-align: center;
+        transform: none;
+    }
+}
+.tag-creator.right {
+    right: -15px;
+    @include breakpoint(tablet) {right: 0;}
+}
+.tag-creator.left  {
+    left: -15px;
+    @include breakpoint(tablet) {left: 0;}
+}

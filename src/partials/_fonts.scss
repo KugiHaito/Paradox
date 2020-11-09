@@ -1,0 +1,61 @@
+$icon-size: 24px !default;
+
+@each $font in Roboto 'OpenSans' 'Material Icons' {
+    @each $weight, $type in (100:Thin, 300:Light, 400:Regular, 500:Medium, 700:Bold, 900: Black) {
+        @font-face {
+            font-family: $font;
+            font-style: normal;
+            font-weight: $weight;
+            src: local($font);
+            src:url('../fonts/#{$font}-#{$type}.ttf') format("truetype");
+        }
+    }
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: $icon-size;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+
+    // Sizes
+    &.md-18 {  
+        font-size: 18px; 
+    }
+    &.md-24 {
+        font-size: 24px; 
+    }
+    &.md-36 {
+        font-size: 36px; 
+    }
+    &.md-48 {
+        font-size: 48px; 
+    }
+    
+    // Colors
+    &.md-dark { 
+        color: rgba(0, 0, 0, 0.54); 
+    }
+    &.md-dark.md-inactive { 
+        color: rgba(0, 0, 0, 0.26); 
+    }
+    &.md-light { 
+        color: rgba(255, 255, 255, 1); 
+    }
+    &.md-light.md-inactive { 
+        color: rgba(255, 255, 255, 0.3); 
+    }
+
+    @include theme-colors(md, (properties:color));
+}

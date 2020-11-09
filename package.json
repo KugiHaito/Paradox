@@ -1,0 +1,37 @@
+{
+  "name": "mepaper",
+  "version": "0.1.2",
+  "description": "A simple Front-end Framework based on Material Design",
+  "homepage": "http://mepaper.github.io/Paper",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mepaper/paper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mepaper/paper/issues"
+  },
+  "files": "dist/",
+  "style": "dist/paper.min.css",
+  "sass": "src/paper.min.scss",
+  "main": "dist/paper.min.js",
+  "keywords": [
+    "mepaper",
+    "paper",
+    "papercss",
+    "css",
+    "sass"
+  ],
+  "authors": [
+    "KugiHaito <kugihaito@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "node-sass": "^4.11.0"
+  }
+}
