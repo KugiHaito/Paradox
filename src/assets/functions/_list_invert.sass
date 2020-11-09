@@ -1,0 +1,11 @@
+// Invert list
+// @param list $list
+// @return list
+@function list-invert($list, $_list: [])
+	$last-item: nth($list, -1)
+	$_list: if(length($_list) == 0, $last-item, append($_list, $last-item))
+	$items: []
+	@each $item in $list
+		@if $item != $last-item
+			$items: if(length($list) == 0, $item, append($items, $item))
+	@return if(length($items) == 0, $_list, invert-list($items, $_list))

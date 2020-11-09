@@ -1,0 +1,24 @@
++themetize(border, (properties: border-color))
+
+// b-1, bt-1, bx-1, ...
+@each $size in map-get($border, sizes)
+	.border-#{$size},
+	.b-#{$size}
+		border: ($size * 1px) solid transparentize($black, .5)
+
+	@each $point in map-get($positions, points)
+		.border-#{$point}-#{$size},
+		.b#{first-char($point)}-#{$size}
+			border-#{$point}: ($size * 1px) solid transparentize($black, .5)
+	
+	@each $axis, $points in map-get($positions, axes)
+		.border-#{$axis}-#{$size},
+		.b#{$axis}-#{$size}
+			@each $point in $points
+				border-#{$point}: ($size * 1px) solid transparentize($black, .5)
+
+// modifiers (--dashed, --double, --dotted)
+[class*='border-']:not([class~='border-'])
+	@each $type in map-get($border, types)
+		+modify($type)
+			border-style: $type

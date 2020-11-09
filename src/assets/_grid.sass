@@ -1,0 +1,61 @@
+// Flex Grid
+.flex-grid,
+.flex-grid > div
+    @extend %flex
+
+.flex-grid
+    flex-wrap: wrap
+
+    > div
+        flex: 1 1 $flex-grid-items-width
+        margin: 10px
+
+.row
+    @extend %flex
+    +prefix(flex-wrap, wrap)
+    flex-direction: row !important
+
+    &:not(.no-gutter) [class^='col-']
+        padding: 0 ($gutter / 2)
+
+        &:first-child
+            padding-left: 0
+
+        &:last-child
+            padding-right: 0
+
+        +breakpoint(tablet)
+            padding: ($gutter / 2) 0
+
+        & .row &
+            padding: (($gutter / 2) / 2)
+
+
+@for $i from 2 through $columns
+    .col-#{$i}
+        width: (100% / $columns * $i)
+
+        +breakpoint(laptop)
+            width: if($i <= $columns, 50%, 100%)
+
+        +breakpoint(phone)
+            width: 100%
+
+
+@each $i in 2 3 4 6 8 12
+    .grid-col-#{$i}
+        @extend %flex
+        grid-template-columns: if($i == 12, repeat(auto-fit, minmax(250px, 1fr)), repeat(1fr, $i))
+
+        +breakpoint(tablet)
+            grid-template-columns: repeat(1fr, ceil($i/2))
+
+        +breakpoint(phone)
+            grid-template-columns: repeat(1fr, 1)
+
+        &:not(.no-gutter)
+            grid-column-gap: $gutter
+
+    .grid-row-#{$i}
+        @extend %flex
+        grid-template-rows: repeat(1fr, $i)

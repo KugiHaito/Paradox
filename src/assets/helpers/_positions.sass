@@ -1,0 +1,17 @@
+// pos-absolute, pos-relative, pos-relative-on-desktop, ...
+@each $type in map-get($positions, type)
+	.pos-#{$type}
+		position: $type
+
+	@each $axis in map-get($positions, points)
+		.pos-#{$type}-#{$axis}
+			position: #{$type}
+			#{$axis}: 0
+
+	@each $point in map-keys($breakpoints)
+		@each $mode in map-get($positions, type)
+			@if $mode != $type
+				.pos-#{$type}-#{$mode}-on-#{$point}
+					position: $type
+					+breakpoint($point)
+						position: $mode !important

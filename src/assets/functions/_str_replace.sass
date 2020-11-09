@@ -1,0 +1,8 @@
+// replace a string
+// @param string $str
+// @param string $search
+// @param string $replace
+// @return string
+@function str-replace($str, $search, $replace: '')
+	$index: str-index($str, $search)
+	@return if($index, str-slice($str, 1, $index - 1) + $replace + str-replace(str-slice($str, $index + str-length($search)), $search, $replace), $str)

@@ -1,0 +1,10 @@
+// get font map
+// @param number $size 
+// @param number $weight 
+// @param number $space 
+// @param string $transform 
+// @param string $justify 
+// @param string $align 
+// @return map
+@function font($size: null, $weight: null, $space: null, $transform: null, $justify: null, $align: null, $height: null, $w-space: null)
+	@return (font-size: $size, font-weight: $weight, letter-spacing: $space, text-transform: $transform, justify-content: $justify, text-align: $align, line-height: $height, white-space: $w-space)

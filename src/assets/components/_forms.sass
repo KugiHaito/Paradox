@@ -1,0 +1,121 @@
+// Form Components
+=input
+	+transition
+	+breakpoint(phone)
+		margin: ($input-margin / 2) !important
+		padding: 5px 15px
+	border: 0
+	border: 2px solid transparent
+	box-shadow: 0 0 5px transparentize($black, .7)
+	font-size: 1em
+	margin: $input-margin
+	padding: 10px 35px
+	width: 100%
+
+	[class^='col-'] &
+		margin: $input-margin 0
+
+
+form
+	margin: 10px
+	padding: 20px 40px
+	+breakpoint(tablet)
+		padding: 20px 10px
+
+		.row:not(.no-gutter) [class^='col-']
+			padding: (($gutter / 2) / 2) 0
+
+	+breakpoint(phone)
+		padding: 10px 0
+
+input
+	+input
+
+	&:not([type='button']):not([type='submit']):not([type='reset']):not(.input-flat)
+		border-radius: $input-radius
+		height: 40px
+
+	&[type='search']
+		+prefix(appearance, none, webkit, false)
+		background: $white url('data:image/pngbase64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAADf0lEQVR4AeyaA/DdThDHt3YHf7M2kttv7fZ1WNsd1e0YtUe13THrdlTbtm3bTK295+TyUz47etrL97KX27d7FBAQEBAQEBAQkCxl/+M+mIwF2Myn+QU/wVnehAWYzH2sfyh1YymM4ANwoth+jABTasSuzrvhxGe8265OqYlyhbEUToK2VBWgVEEWjMArOIkbv8AIykIpC/7i7XCSN96Ovyjl4Cq4A8el3eEqlDKgPV7D8cBeoz35j6oaJfLv8BSuV76s+rtgzoI58ZdVRoUwme9F/P4rVZX8xS4Y6XJ4BZoiG4UB2dCUV0T41b3yhcg/kC3CdrUqdjyjBlaFlXBAyjYIxoaN5FYUJ6pz2PAbR/5gVeJ3egjY1SgBUEMPQX5nVSIfyMTHtLl7YBejBLGL4YEm4RhlItOoxvrMqfpJeaqv30nVmEzDGzQBA5P2NVD6wnrT8V9cG3IfuQB7NX8lySQ8Wg7oLhGwq2n+RpNJcE0Mt4xcwsuEx6tkjvIl5HzZdcglqOtjEHF3MdRdDx57mbSMtpc5ATPFUHPIAzBXeJ1hTsBGMZQnabBqJ1bBRnMCLohtp5YnAmqJablIppD5i1XcyN5yl0wht/4S+cgDSuQTIfSWTCGT4DJ5yQPK5JWJeVoPoYdkClwUi7g2eYCqLQRcNidgvYjWDt5UN4TXDeYEzBBzNdfIRjbXv1TijgelwSy4K+5AVzIFSmr/oELkEhWSPq0yZA6+ZTqdxjUyCY/REupq7qqr0h9PIYnZIMJeV/72aQJAZuG1moT+lCTor13+VjINN/KsrBIKUyBrSMbJhCNeFLa4qF7YwhbyA1R2X1q0q4UrLTLIHzAuXHE3/sSCO4RrjfBU8osy2bEfThhbyVXiaMeG7xGcKZrf18ZqMg0OuwnWwQlrz1DS98Z29BaTCpUva/3zb66COdXf5cuqEE8RkoUAP54/YSPZa+Oh5B92NQ/arA/5rXinH/mH9Q9vdXX5F63iaAonBSVQFjWcXyTZH56BX+kDcFJWAqkCSRz2WMlF6QtwUkaCfCrtj3uhblPt6AfgpJAECRgjYxx4OswDUYQEPCylJciF3QeTMf/TkbMnX7apLTxatVR/k8R/Cabg9+3PMREAIADDQDShjBH5jBXAQrmPgjzC7wQEhLkQEBAQ7kMIoJOQ/UpC9nsJe3QVQu1+CO/vS5IkSQd2zX60cmQg4gAAAABJRU5ErkJggg==') no-repeat 10px
+		background-size: 24px
+
+	&[type='radio'],
+	&[type='checkbox']
+		+prefix(appearance, none, webkit, false)
+		+transition
+		box-shadow: none
+		height: $input-size !important
+		margin: 5px
+		padding: 2px
+		width: $input-size
+
+		&::before,
+		&::after
+			+transition
+			border-radius: 0
+			content: ''
+			display: block
+			position: relative
+			transition-property: transform, border-color
+
+		&:not(.input-flat)::before,
+		&:not(.input-flat)::after
+			border-radius: 15px
+
+		&::before
+			border: 2px solid $dark
+			height: $input-size
+			left: -10px
+			top: -6px
+			width: $input-size
+
+		&::after
+			background: $dark
+			height: $input-size - 2
+			left: -7px
+			top: ($input-size + 7px) * -1
+			transform: scale(0) !important
+			width: $input-size - 2
+
+		&:checked::after
+			transform: scale(.8) !important
+
+		&:disabled
+			cursor: not-allowed
+
+		&.input-light
+			&::before
+				border-color: $snow-white
+
+			&::after
+				background-color: $snow-white
+
+		// input color
+		+themetize($class: input, $pseudos: (after: background-color, before: border-color))
+
+		// outline input
+		+themetize($class: input-, $pseudos: ('checked::after': background-color, 'checked::before': border-color))
+
+	&[type='date'],
+	&[type='time'],
+	&[type='datetime-local'],
+	&[type='month']
+		+prefix(appearance, listbox, webkit, false)
+
+	&:not([type='radio']):not([type='checkbox'])
+		+themetize(input, (properties: background-color, auto-color: true))
+		+themetize(input-, $hover-properties: (properties: border-bottom-color))
+			box-shadow: none
+			border-bottom-color: transparentize($black, .85)
+
+textarea
+	+input
+	height: auto !important
+	resize: none
+
+fieldset
+	border: 0
+	margin: 0
+	min-width: 0
+	padding: 0

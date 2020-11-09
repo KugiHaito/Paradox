@@ -1,0 +1,12 @@
+@function font-resize($size, $device: mobile)
+	$list: map-get($breakpoint-font-sizes, desktop)
+	@for $index from 1 through length($list)
+		$current: nth($list, $index)
+		$next: if($current == nth($list, length($list)), null, nth($list, $index + 1))
+		$value: nth(map-get($breakpoint-font-sizes, $device), $index)
+		@if $next == null
+			@if $size >= $current
+				@return $value
+		@else if $size >= $current and $size < $next
+				@return $value
+	@return null

@@ -1,0 +1,41 @@
+// Label Component
+=labels
+	.label
+		// default label
+		+label
+
+		// colored labels
+		+themetize(label, (properties: background-color, auto-color: true))
+
+		// outline labels
+		+themetize(label-, (properties: color border-color))
+
+		&.label-small,
+		&.label-sm
+			font-size: 12px
+
+		&.label-large,
+		&.label-lg
+			font-size: 24px
+			padding: 3px 10px
+
+		&.label-big,
+		&.label-bigger
+			font-size: 32px
+			padding: 8px 13px
+
+		&.label-flat
+			border-radius: 0
+
+
+=label
+	align-self: flex-start
+	border: 2px solid transparent
+	border-radius: 5px
+	display: flex
+	font-size: 18px
+	margin: 0 5px
+	padding: 2px 8px
+
+
++labels

@@ -1,56 +1,86 @@
-window.onload = () => {
+const navbar = {
+    className: '.navbar',
+    hasClass: 'navbar-fixed',
+    menuClass: '[class^="navbar-links"]',
+    navMenu: '.nav-menu',
 
-    const nav = document.querySelector('.navbar')
-    window.onscroll = () => {
-        /** nav-fixed effect */
-        if (nav != null && nav != undefined) {
-            value = (this.scrollY != 0) ? "0 0 10px rgba(0,0,0,.3)" : "none";
-            if(nav.classList.contains('navbar-fixed') || nav.style.position == "fixed") nav.setAttribute('style', `box-shadow:${value}`)
-        }
-    }
+    eventHandler() {
+        this.componets.map(component => {
+            window.onscroll = () => {
+                if (component.classList.contains(this.hasClass) || component.style.position == "fixed")
+                    component.style.boxShadow = (window.scrollY != 0)? "0 0 10px rgba(0, 0, 0, .3)":null
+            }
 
-    /** SideNav */
-    if (nav != null && nav != undefined) {
-        if (nav.querySelector('.btn-menu') != null) {
-            nav.querySelector('.btn-menu').addEventListener('click', () => {
-            nav.querySelector('.links').style.left = 0
-        });
-        }
-        document.querySelector('main').addEventListener('click', () => {
-            nav.querySelector('.links').style.left = "-105%"
-        });
-    }
-
-    /** SubDropdowns */
-    const subDropdowns = document.querySelectorAll('.dropdown-items .dropdown-items');
-    subDropdowns.forEach(item => {
-        const parent = item.parentElement.parentElement
-        const pWidth = item.parentElement.clientWidth - 5
-        const wMiddle = window.screen.width / 2
-        const side = (parent.getBoundingClientRect().left <= wMiddle)? 'right':'left';
-        var space = pWidth + (item.clientWidth - parent.clientWidth)
-        space += (side == 'right')? 20:10;
-        item.setAttribute('style', `${side}: -${space}px`)
-    });
-
-    /** Buttons State */
-    var buttons = document.querySelectorAll('a[toggle], button[toggle]');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('active');
+            let btn = component.querySelector(this.navMenu)
+            let menu = component.querySelector(this.menuClass)
+            let main = document.querySelector('main')
+            Array.from(menu.querySelectorAll('.nav-link')).map(link => {
+                link.addEventListener('click', ()  => menu.style.left = '-105%')
+            })
+            btn.addEventListener('click', () => menu.style.left = 0)
+            main.addEventListener('click', ()  => menu.style.left = '-105%')
         })
-    })
+    },
 
-    /** Square Box */
-    this.squareBoxs()
-    window.onresize = () => {
-        this.squareBoxs()
+    load() {
+        this.componets = Array.from(document.querySelectorAll(this.className))
+        if (this.componets.length > 0)
+            this.eventHandler()
     }
 }
 
-function squareBoxs() {  
-    boxs = document.querySelectorAll('.--square')
-    boxs.forEach(box => {
-        box.setAttribute('style', `min-height:${box.clientWidth}px`)
-    });
+const accordion = {
+    className: "[class*='card-accordion']",
+    modifier: '--multiple',
+    subElement: "item",
+    eventName: 'click',
+
+    eventHandler() {
+        this.componets.map(component => {
+            let items = Array.from(component.querySelectorAll(`.${this.subElement}`))
+            items.map(i => {
+                var hasModifier = Array.from(component.classList).filter(_class => {
+                    _class.includes(this.modifier)
+                })
+
+                if (hasModifier.length == 0)
+                    items.map(i => {
+                        i.style.maxHeight = ""
+                        i.classList.remove('active')
+                    })
+                
+                i.addEventListener(this.eventName, () => {
+                    let content = i.querySelector('.item-content, .content')
+                    let isMulti = Array.from(i.parentElement.classList)
+                        .filter(c => c.includes(this.modifier))
+
+                    if (isMulti.length == 0) {
+                        items.map(i => {
+                            i.querySelector('.item-content, .content').style.maxHeight = ""
+                            i.classList.remove('active')
+                        })
+                    }
+                    content.style.maxHeight = (content.style.maxHeight == "")? `${content.scrollHeight}px`:""
+                    i.classList.toggle('active')
+                })
+            })
+        })
+    },
+
+    load() {
+        this.componets = Array.from(document.querySelectorAll(this.className))
+        if (this.componets.length > 0)
+            this.eventHandler()
+    }
+}
+
+const paradox = {
+    accordion,
+    navbar
+}
+
+window.onload = () => {
+    Object.entries(paradox).map(([name, component]) => {
+        component.load()
+    })
 }

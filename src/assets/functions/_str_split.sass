@@ -1,0 +1,12 @@
+// replace a string
+// @param string $str
+// @param string $search
+// @param string $replace
+// @return string
+@function str-split($string, $separator: ' ')
+	$splited: ()
+	$index: str-index($string, $separator)
+	@while $index != null
+		$split-arr: append($splited, str-slice($string, 1, $index - 1))
+		$index: str-index(str-slice($string, $index + 1), $separator)
+	@return append($splited, $string)

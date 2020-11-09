@@ -1,2 +1,8 @@
-# Node modules folder
+# Folders
 node_modules/
+resources/
+backup/
+test/
+
+# Files
+*.txt

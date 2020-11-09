@@ -1,0 +1,8 @@
+// set width and height in a line
+// @param number $size value size
+// @param list props additional properties
+=size($size, $props: [])
+	height: $size
+	width: $size
+	@each $prop in $props
+		#{$prop}: $size

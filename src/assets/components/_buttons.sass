@@ -1,0 +1,202 @@
+$font-size: 14px !default
+$min-width: 80px !default
+$btn-icon-size: 50px !default
+
+=buttons
+	.btn
+		+button
+
+		+themetize(btn, (auto-color: true, properties: background-color border-color))
+			&:hover,
+			&:focus,
+			&.active
+				box-shadow: 0 0 5px transparentize($black, .7)
+
+		+themetize(btn-outline, (properties: color), (properties: background-color))
+			box-shadow: none !important
+			color: $snow-white
+
+		+themetize(btn-border, (properties: color border-color), (properties: background-color border-color))
+			border-style: solid !important
+			border-width: 2px !important
+			box-shadow: none !important
+			color: $snow-white
+
+		+themetize(btn-inverse, $hover-properties: (properties: color))
+			border-color: $white !important
+			border-style: solid !important
+			border-width: 2px !important
+			box-shadow: none !important
+			color: $snow-white
+
+			&:hover
+				background: $white !important
+
+		+themetize(btn-reverse, $hover-properties: (properties: color))
+			border-color: $dark !important
+			border-style: solid !important
+			border-width: 2px !important
+			box-shadow: none !important
+			color: $dark
+
+			&:hover
+				background: $dark !important
+
+		+themetize(btn-outline-border, (properties: color), (properties: border-color))
+			background: transparent
+
+		+themetize(btn-inverse-border, (properties: background-color, auto-color: true), (properties: border-color color))
+			&:hover,
+			&:focus
+				background-color: transparent !important
+
+		&.btn-rounded
+			border-radius: 5px
+
+		&.btn-circle
+			border-radius: 50px
+
+		&.btn-icon
+			+size($btn-icon-size, max-width)
+			border-radius: 50%
+			min-width: 0 !important
+			font-size: 20px
+
+		&.btn-block
+			width: 100%
+
+		&.btn-sm,
+		&.btn-small
+			font-size: ($font-size - 4)
+			min-width: 60px
+			padding: 5px 10px
+
+			&.btn-icon
+				+size(($btn-icon-size / 2), max-width)
+				font-size: 16px
+
+		&.btn-lg,
+		&.btn-large
+			font-size: 1.25rem
+			padding: .5em 2em
+
+			&.btn-icon
+				+size(($btn-icon-size * 1.2), max-width)
+				padding: 0
+				font-size: 24px
+
+		&.btn-big,
+		&.btn-bigger
+			font-size: 2em
+			padding: 1em 4em
+
+			&.btn-icon
+				+size(($btn-icon-size * 1.6), max-width)
+				padding: 0
+				font-size: 36px
+
+		&.disabled,
+		&[disabled]
+			cursor: not-allowed
+			opacity: .6
+			pointer-events: none
+
+		&.btn-float
+			border-radius: 50%
+			box-shadow: none
+			bottom: 20px
+			font-size: 1.5rem
+			min-width: auto
+			padding: 15px 18px
+			position: fixed
+			right: 20px
+
+			&:hover,
+			&:focus
+				box-shadow: 0 0 15px transparentize($black, .7) !important
+
+	.dropdown
+		+dropdown
+
+
+=button
+	@extend %flex
+	+btn
+		align-items: center
+		align-self: flex-start
+		border: 0
+		border: 2px solid transparent
+		border-radius: 0
+		box-shadow: none
+		flex-direction: row
+		float: left
+		font-size: $font-size
+		justify-content: center
+		margin: 5px
+		min-width: $min-width
+		padding: 8px 15px
+		text-transform: uppercase
+
+
+=btn($hover: null)
+	+prefix(tap-highlight-color, transparent, webkit, false)
+	cursor: pointer
+	@content
+
+	&:hover,
+	&:focus
+		+transition
+		background-color: transparentize($black, .7)
+		@if $hover != null
+			@each $property, $value in $hover
+				#{$property}: $value
+
+
+=dropdown
+	align-self: flex-start
+	text-align: center
+	text-transform: uppercase
+
+	a
+		border: 2px solid transparent
+		padding: 8px 15px !important
+		width: 100%
+
+		&:hover,
+		&:focus
+			+transition
+			background: transparentize($black, .9)
+			cursor: pointer
+
+	.dropdown
+		display: flex
+		width: 100%
+
+	.dropdown-list,
+	.dropdown-items
+		+transition
+		background: $white
+		box-shadow: 0 0 10px transparentize($black, .7)
+		display: flex
+		flex-direction: column
+		margin-left: -1.5%
+		min-width: 120px
+		opacity: 0
+		position: absolute
+		visibility: hidden
+
+		a
+			color: $dark
+			margin: 0 !important
+			width: 100%
+
+	&:hover,
+	&:focus
+		.dropdown-list,
+		.dropdown-items
+			margin-top: 5px
+			opacity: 1
+			visibility: visible !important
+
+
++buttons

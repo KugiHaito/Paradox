@@ -1,0 +1,21 @@
+// margin and padding class
+@each $index, $space in $spacers
+
+	@each $prop in margin padding
+		// m-1, p-1, ...
+		.#{first-char($prop)}-#{$index}
+			@if $prop == margin
+				+to-zero($prop, margin)
+			#{$prop}: $space !important
+
+		// mt-1, pt-1, mb-1, pb-1, ...
+		@each $point in map-get($positions, points)
+			.#{first-char($prop)}#{first-char($point)}-#{$index}
+				+to-zero($prop, margin)
+				#{$prop}-#{$point}: $space !important
+
+		// mx-1, px-1, my-1, py-1, ...
+		@each $axis, $points in map-get($positions, axes)
+			.#{first-char($prop)}#{$axis}-#{$index}
+				@each $point in $points
+					#{$prop}-#{$point}: $space !important

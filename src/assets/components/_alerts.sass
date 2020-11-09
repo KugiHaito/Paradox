@@ -1,0 +1,73 @@
+$alert-fixed-width: 80vw
+$alert-padding: 10px
+
+=alerts
+	.alert
+		// default alert
+		+alert
+
+		// color alerts
+		+themetize(alert, (properties: background-color border-color, auto-color: true))
+
+		// border alerts
+		+themetize(alert-, (properties: border-color color), (properties: border-color), $sub-elements: (mdi: (properties: color), hr: (properties: border-color, no-class: true)))
+			&.alert-fixed,
+			&.alert-fixed--bottom
+				background: $white
+
+		&.alert-flat
+			border-radius: 0
+
+		&.alert-fixed
+			left: unquote('calc(calc(100#{unit($alert-fixed-width)} - #{$alert-fixed-width}) / 2)')
+			margin: 0
+			position: fixed
+			width: $alert-fixed-width
+			z-index: 1002
+
+			&.to-bottom
+				bottom: 0
+				border-bottom: none
+				border-bottom-left-radius: 0
+				border-bottom-right-radius: 0
+
+			&:not(.to-top):not(.to-bottom),
+			&.to-top
+				top: 0
+				border-top: none
+				border-top-left-radius: 0
+				border-top-right-radius: 0
+
+		.alert-header
+			+font-resize(1.5rem)
+			padding: $alert-padding
+
+		.alert-link
+			color: transparentize($black, .3)
+
+		.alert-header,
+		.alert-link
+			font-weight: bold
+
+
+=alert
+	@extend %flex
+	border: 2px solid
+	border-radius: 5px
+	margin: 10px 0
+	width: 100%
+
+	> div,
+	> span,
+	> p
+		padding: $alert-padding
+		+breakpoint(phone)
+			flex-direction: column
+
+	.alert-header + div,
+	.alert-header + span,
+	.alert-header + p
+		padding-top: 0
+
+
++alerts

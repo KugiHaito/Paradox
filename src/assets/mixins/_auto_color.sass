@@ -1,0 +1,6 @@
+// auto color
+// @param color $color
+// @param boolean $important
+=auto-color($color, $level: 60, $important: false, $_colors: (light: $snow-white, dark: $dark))
+	$important: if($important, !important, '')
+	color: if(lightness($color) < $level, map-get($_colors, light) #{$important}, map-get($_colors, dark) #{$important})

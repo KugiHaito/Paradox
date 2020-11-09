@@ -1,0 +1,17 @@
+// Gradients
+@each $color-name, $tones in $colors
+	@each $tone-name, $tone in $tones
+		@each $current-color, $current-tones in $colors
+			@each $current-tone-name, $current-tone in $current-tones
+				$gradient-class: #{$color-name}#{str-rename($tone-name)}-to-#{$current-color}#{str-rename($current-tone-name)}
+				@if $tone != $current-tone
+					@each $direction in map-get($positions, points)
+						.btn--#{$gradient-class}-#{$direction},
+						.btn-#{$gradient-class}-#{$direction}
+							border-image: linear-gradient(to $direction, $tone, $current-tone) 30% !important
+
+						.btn-#{$gradient-class}-#{$direction}
+							background: linear-gradient(to $direction, $tone, $current-tone) 30%
+
+						.gd-#{$gradient-class}-#{$direction}
+							background: linear-gradient(to $direction, $tone, $current-tone)

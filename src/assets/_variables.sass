@@ -1,0 +1,60 @@
+// theme colors
+$primary: #6a1b9a !default
+$secondary: #ff3d00 !default
+$third: #0f0f0f !default
+
+// action colors
+$danger: #d9534f !default
+$warning: #ffca28 !default
+$info: #31b0d5 !default
+$success: #5cb85c !default
+$snow-white: #fffaff !default
+$white: #fff !default
+$black: #000 !default
+$silver: #f7f7f7 !default
+$dark: #212121 !default
+
+// grid
+$columns: 12 !default
+$gutter: 20px !default
+
+// inputs
+// $input: (size: 20px, radius: 20px, margin: 5px)
+$input-margin: 5px !default
+$input-radius: 20px !default
+$input-size: 20px !default
+
+// flex grid (card)
+$flex-grid-items-width: 300px !default
+
+// Font System
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Roboto', 'OpenSans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default
+$font-family-monospace: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default
+$font-weights: (Thin: 100, Light: 300, Regular: 400, Medium: 500, Bold: 700, 'Black': 900) !default
+
+// margin layout & breakpoints
+$margin-layout: (desktop: 10rem, laptop: 5rem, tablet: 3rem, phone: 1.25rem, smallphone: .625rem‬) !default
+$breakpoints: (laptop: 64rem, tablet: 48rem, phone: 37.5rem, smallphone: 25rem) !default
+$breakpoint-font-sizes: (desktop: .5rem .75rem 1rem 1.125rem 1.375rem 1.5rem 1.75rem 2rem 2.625rem 3.875rem, mobile: .625rem .75rem .875rem 1rem 1.125rem 1.25rem 1.375rem 1.5rem 1.75rem 2rem, smallphone: .625rem .625rem .75rem .875rem 1rem 1.125rem 1.25rem 1.375rem 1.5rem 1.75rem) !default
+
+// Colors 
+$theme-colors: (primary: themetize($primary), secondary: themetize($secondary), third: themetize($third), silvery: themetize($silver), dark: themetize($dark))
+$action-colors: (success: themetize($success, false), warning: themetize($warning, false), danger: themetize($danger, false), info: themetize($info, false))
+$colors: map-merges($theme-colors, $action-colors)
+
+// Typography
+$font-sizes: (8: .5rem, 10: .625rem, 12: .75rem, 14: .875rem, 16: 1rem, 18: 1.125rem, 20: 1.25rem, 22: 1.375rem, 24: 1.5rem, 28: 1.75rem, 32: 2rem, 42: 2.625rem, 62: 3.875rem, 96: 6rem)
+$headers: (headline-1: font(6rem, 300, -.10rem, inherit), headline-2: font(3.875rem, 300, -.10rem, inherit), headline-3: font(2.625rem, normal, -.1rem, inherit, $height: 2.5rem), headline-4: font(1.75rem, normal, -.05rem, inherit), headline-5: font(1.5rem, normal, 0, inherit), headline-6: font(1.375rem, 600, .10rem, inherit))
+$titles: (title-1: font(1.875rem, normal, -.05rem, inherit), title-2: font(2rem, normal, -.05rem, inherit), subtitle-1: font(1.25rem, normal, .03rem, inherit), subtitle-2: font(1.125rem, 600, .08rem, inherit), subtitle-3: font(1rem, 400, '', inherit), subtitle-4: font(.875rem, 400, .08rem, inherit))
+$subtitles: (body-1: font(1rem, normal, .1rem, inherit), body-2: font(.875rem, normal, .10rem, inherit), lead-1: font(1.5rem, lighter), lead-2: font(1.625rem, normal, 1.3em, inherit, $w-space: pre-line), caption: font(.75rem, normal, 0.05rem, inherit), overline: font(.625rem, normal, .10rem, uppercase), small-text: font(.625rem, normal, 0.05rem, inherit))
+$texts: (text-normal: font($transform: initial), text-lower: font($transform: lowercase), text-upper: font($transform: uppercase), text-black: font($weight: 900), text-bold: font($weight: 700), text-regular: font($weight: 400), text-medium: font($weight: 500), text-light: font($weight: 300), text-thin: font($weight: 100), text-end: font($justify: flex-end), text-start: font($justify: flex-start), text-center: font($align: center), text-right: font($align: right), text-left: font($align: left), text-break: (overflow-wrap: break-word, word-break: break-word), text-little: (max-width: 80%, overflow: hidden, text-overflow: ellipsis))
+$fonts: map-merges($headers, $titles, $subtitles, $texts)
+
+// helper properties
+$spacer: 1rem
+$spacers: (6: ($spacer * 5), 5: ($spacer * 3), 4: ($spacer * 2), 3: ($spacer * 1.5), 2: $spacer, 1: ($spacer * .5), 0: 0)
+// NOTE: border style `solid` is default
+$border: (sizes: 1 2 5 10 15, types: dashed dotted double, radius: 0 5 10 15 20 25 50)
+$positions: (points: top bottom left right, type: static absolute relative fixed, axes: (y: top bottom, x: left right))
+$width-values: (p: (25: 25%, 50: 50%, 60: 60%, 80: 80%, 100: 100%), vh: (25: 25vh, 50: 50vh, 60: 60vh, 80: 80vh, 100: 100vh))
+$helper-props: (width: $width-values, min-width: $width-values, display: block inline-block flex inline-flex grid inline-grid none, flex-flow: 'row wrap' 'row nowrap' 'column nowrap', flex-direction: row row-reverse column column-reverse, align-items: stretch flex-start flex-end center, align-content: stretch flex-start flex-end center space-between space-around space-evenly, justify-content: stretch flex-start flex-end center space-between space-around space-evenly, flex-grow: 0 1 2, flex-shrink: 0 1 3 5, align-self: stretch flex-start flex-end center, overflow: auto hidden scroll)

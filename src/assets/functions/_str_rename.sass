@@ -1,0 +1,8 @@
+// rename strings
+// @param string $str
+// @param boolean $replace
+// @return string
+@function str-rename($str, $replace: true, $to-base: true)
+	$str: if($str == 'base', '', if($to-base, --#{$str}, $str))
+	$str: if($replace, str-replace($str, ' ', '-'), $str)
+	@return $str

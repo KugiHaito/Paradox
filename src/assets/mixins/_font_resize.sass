@@ -1,0 +1,9 @@
+// font breakpoint
+// @param number $size
+=font-resize($size: null)
+	@if $size != null
+		font-size: $size
+		+breakpoint(phone)
+			font-size: font-resize($size, mobile)
+		+breakpoint(smallphone)
+			font-size: font-resize($size, smallphone)

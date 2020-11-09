@@ -1,0 +1,20 @@
+// Flex items
+%flex
+	display: -webkit-box
+	display: -moz-box
+	display: -ms-flexbox
+	display: -webkit-flex
+	display: flex !important
+	flex-direction: column
+
+%flex-item
+	flex: 1
+	padding: 20px
+	margin: 5px
+	+breakpoint(phone)
+		padding: 10px
+
+%flex-center
+	@extend %flex
+	align-items: center
+	justify-content: center

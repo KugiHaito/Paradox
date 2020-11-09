@@ -1,0 +1,6 @@
+// get a color by name
+// @param string $name
+// @param string $variant
+// @return color
+@function color($name, $variant: null)
+	@return if($variant == null, map-get($colors, $name), map-get(map-get($colors, $name), $variant))

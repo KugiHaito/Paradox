@@ -1,0 +1,15 @@
+// map iterate items
+// @param list/map $iterable
+// @param function $callback
+// @return list
+@function map($iterable, $callback)
+	$values: []
+	@if is('list', 'string', $iterable)
+		@each $item in $iterable
+			$values: append($values, call($callback, $item))
+	@else if is('map', $iterable)
+		@each $key, $value in $iterable
+			$values: append($values, call($callback, $key, $value))
+	@else
+		@error "#{type-of($iterable)} is not iterable"
+	@return $values

@@ -1,0 +1,14 @@
+// w-1, min-width-1, overflow-hidden, ...
+@each $property, $values in $helper-props
+	$prop: if(str-length($property) < 8, first-char($property), $property)
+	@if is(map, $values)
+		@each $prefix, $sizes in $values
+			@each $size, $size-value in $sizes
+				.#{$prop}-#{$prefix}-#{$size}
+					#{$property}: $size-value
+	@else if is(list, $values)
+		@each $value in $values
+			.#{$prop}-#{str-replace(#{$value}, ' ', '-')}
+				#{$property}: #{$value}
+	@else
+		@error "No support to #{type-of($values)}"

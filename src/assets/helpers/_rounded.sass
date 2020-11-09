@@ -1,0 +1,26 @@
+// Rounded (Border Radius)
+@each $size in map-get($border, radius)
+	.rounded-#{$size},
+	.r-#{$size}
+		border-radius: ($size * 1px) !important
+
+	// r-top-left, r-bottom-right
+	@each $x in map-get(map-get($positions, axes), x)
+		@each $y in map-get(map-get($positions, axes), y)
+			.rounded-#{$y}-#{$x}-#{$size},
+			.r-#{$y}-#{$x}-#{$size}
+				border-#{$x}-#{$y}-radius: ($size * 1px) !important
+
+	// r-left, r-right
+	@each $y in map-get(map-get($positions, axes), y)
+		.rounded-#{$y}-#{$size},
+		.r-#{$y}-#{$size}
+			@each $x in map-get(map-get($positions, axes), x)
+				border-#{$x}-#{$y}-radius: ($size * 1px) !important
+
+	// r-top, r-bottom
+	@each $x in map-get(map-get($positions, axes), x)
+		.rounded-#{$x}-#{$size},
+		.r-#{$x}-#{$size}
+			@each $y in map-get(map-get($positions, axes), y)
+				border-#{$x}-#{$y}-radius: ($size * 1px) !important

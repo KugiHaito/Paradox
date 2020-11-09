@@ -1,0 +1,5 @@
+// reset property to zero on breakpoint phone (with important)
+=to-zero($prop, $is)
+	@if $prop == $is
+		+breakpoint(phone)
+			#{$prop}: 0 !important

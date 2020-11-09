@@ -1,0 +1,125 @@
+=cards
+	.card
+		// default card
+		+card
+
+		// color card
+		+themetize(card, (properties: background-color, auto-color: true))
+
+		// outline color card
+		+themetize(card-, $sub-elements: ('card-header': (properties: background-color, auto-color: true)))
+
+
+=card($rounded: 5px)
+	@extend %flex
+	color: $black
+	background-color: $white
+	border-radius: $rounded
+	box-shadow: 0 0 10px transparentize($black, .7)
+	flex-direction: column
+	margin: 5px
+	+breakpoint(phone)
+		margin: 5px 0
+
+	&:first-child
+		border-top-left-radius: $rounded
+		border-top-right-radius: $rounded
+
+	&:last-child
+		border-bottom-left-radius: $rounded
+		border-bottom-right-radius: $rounded
+
+	&.card-flat
+		border-radius: 0
+
+	> div:not(.item)
+		padding: 10px 20px
+		width: 100%
+
+		&.card-header,
+		.card-content,
+		.card-footer
+			@extend %flex
+			border: 0
+
+		&.card-header
+			align-items: center
+			justify-content: space-between
+			font-size: 18px
+			font-weight: 500
+
+		&.card-footer
+			align-items: flex-end
+
+		&.card-content
+			flex-direction: column
+			flex-grow: 1
+
+	&.hoverable,
+	.hoverable
+		> div,
+		.item
+			&:hover,
+			&:focus
+				+transition
+				background-color: transparentize($black, .9)
+				cursor: pointer
+
+	&.card-list,
+	.card-list
+		padding: 0
+
+		> div,
+		.item
+			@extend %flex
+			align-items: center
+			flex-direction: row
+			padding: 10px 20px
+
+		&:not(.card-list-stripped)
+			> div,
+			.item
+				border-bottom: 1px solid transparentize($black, .9)
+
+				&:last-child
+					border: 0
+
+	&.card-list-stripped,
+	.card-list-stripped
+		&:nth-chid(even)
+			background-color: transparentize($black, .95)
+
+
+	&.card-accordion,
+	&.card-accordion--multiple
+		width: 100%
+		
+		.item
+			> .item-header:not(.btn)
+				display: flex
+				justify-content: space-between
+				padding: 15px 20px
+
+				&::after
+					+transition
+					content: "\276F"
+					display: flex
+					justify-content: center
+
+			&.active
+				.item-header::after
+					transform: rotate(90deg)
+
+			> .item-content,
+			> content
+				+transition
+				max-height: 0
+				overflow: hidden
+				background-color: rgba(0, 0, 0, .05)
+
+			p,
+			span
+				padding: 20px
+
+
++cards

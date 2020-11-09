@@ -1,0 +1,352 @@
+// Navbars Component
+$button-radius: 20px
+$last-button-style: btn-primary !default
+
+=navbars
+	.navbar
+		+navbar
+		+themetize($class: navbar, $properties: (properties: background-color, auto-color: true), $sub-elements: ('[class^="navbar-links"]:not(.navbar-links--toggle) .nav-link:not(.no-active):last-child, .navbar-links--toggle .nav-link.active:not(.no-active)': (properties: color, no-class: true)))
+
+			[class^="navbar-links"]:not(.navbar-links--toggle) .nav-link:not(.no-active):last-child,
+			.navbar-links--toggle .nav-link.active:not(.no-active)
+				background-color: $snow-white !important
+				border-color: transparent !important
+
+				+breakpoint(tablet)
+					color: $dark !important
+
+			input[type='search']
+				filter: contrast(2) invert(1)
+
+				&:focus,
+				&:focus
+					filter: contrast(1) invert(0)
+
+				&::placeholder
+					color: $dark
+
+		+themetize($class: navbar-, $sub-elements: ('[class^="navbar-links"]:not(.navbar-links--toggle) .nav-link:not(.no-active):last-child, .navbar-links--toggle .nav-link.active:not(.no-active)': (properties: background-color border-color, auto-color: true, no-class: true)))
+			[class^="navbar-links"]:not(.navbar-links--toggle) .nav-link:not(.no-active):last-child,
+			.navbar-links--toggle .nav-link
+				&.active:not(.no-active)
+					color: $snow-white !important
+
+				+breakpoint(tablet)
+					&:not(.active)
+						color: $dark !important
+
+						&:hover,
+						&:focus
+							background: transparentize($black, .9) !important
+
+		+themetize(navbar-border, (properties: color border-color), $sub-elements: ('[class^="navbar-links"]:not(.navbar-links--toggle) .nav-link:not(.no-active):last-child, .navbar-links--toggle .nav-link.active:not(.no-active)': (properties: background-color border-color, auto-color: true, no-class: true)))
+
+		+themetize($class: navbar-light, $properties: (auto-color: true), $sub-elements: (nav-link: (hover: color), 'links > .dropdown > a': (hover: color), 'nav-link:not(.no-active):last-child': (auto-color: hover, properties: color border-color, hover: background-color)))
+			background: transparent
+
+			.nav-link:not(:last-child),
+			[class^="navbar-links"] > .dropdown > a
+				&:hover,
+				&:focus
+					background: transparent
+
+		&.navbar-flat
+
+			.nav-menu,
+			&::before
+				border-radius: 0
+
+			&:not(.navbar-flat-extended) nav
+				min-height: auto
+
+			.nav-link,
+			.dropdown a,
+			.dropdown-list,
+			.dropdown-items,
+			input[type='search']
+				border-radius: 0 !important
+
+				&:not(.dropdown-list):not(.dropdown-items)
+					margin: 0 !important
+
+		&.navbar-flat-extended
+			@extend .navbar-flat
+			+breakpoint(tablet)
+				nav > div
+					padding: 0
+
+			.nav-menu
+				margin: 0
+				margin-right: 10px !important
+				padding: 10px 15px
+
+			&,
+			nav
+				padding: 0
+
+				[class^="navbar-links"]
+					padding: 0
+
+			nav
+				> div,
+				.nav-link,
+				.dropdown
+					align-self: stretch !important
+
+				[class^="navbar-links"] > .dropdown > a
+					align-items: center
+					display: flex
+					height: 100%
+
+				input[type='search']
+					height: 100%
+
+					&:focus
+						box-shadow: none
+
+		&.navbar-inverse
+			nav,
+			[class^="navbar-links"]
+				flex-direction: row-reverse
+
+		&.navbar-column nav
+			flex-direction: column
+
+			> div
+				justify-content: center
+
+				&:first-child
+					padding-top: 20px
+					+breakpoint(tablet)
+						padding-top: 0 !important
+
+		&.navbar-fixed
+			position: fixed
+			top: 0
+
+		&.navbar-absolute
+			position: absolute
+			top: 0
+
+=navbar
+	@extend .mdi
+	+transition
+	display: flex !important
+	background: $white
+	z-index: 999
+
+	nav
+		@extend %flex
+		align-items: center
+		flex-direction: row
+		justify-content: space-between
+		min-height: 50px
+		width: 100%
+		+breakpoint(phone)
+			padding: 0 !important
+
+		> div
+			display: flex
+			padding: 10px 20px
+
+		h1,
+		.nav-title
+			align-self: center
+			font-size: 18px !important
+			font-weight: normal
+
+			img
+				width: 60%
+
+		.nav-menu
+			+btn
+				align-items: center
+				border-radius: 50px
+				cursor: pointer
+				display: none
+				font-size: 24px
+				margin: 0 5px
+				padding: 5px 10px
+
+			+breakpoint(tablet)
+				display: flex !important
+
+		[class^="navbar-links"]
+			align-items: center
+			+breakpoint(tablet)
+				+sidebar
+
+			+breakpoint(phone)
+				width: 280px !important
+
+			&:not(.navbar-links--toggle) .nav-link
+				&:not(.no-active):last-child
+					@extend .#{$last-button-style}
+					+breakpoint(tablet)
+						background-color: $white
+						border: 0
+
+			&.navbar-links--toggle .nav-link.active
+				&:not(.no-active)
+					@extend .#{$last-button-style}
+
+			.nav-link
+				@extend .btn
+				border: 2px solid transparent
+				border-radius: $button-radius
+				font-size: 1em
+				margin: 0 5px
+				min-width: 60px
+				padding: 8px 15px
+				box-shadow: none !important
+
+				&:hover,
+				&:focus
+					background: transparentize($black, .9)
+					box-shadow: none !important
+
+			.dropdown
+				align-self: center
+
+				.dropdown > a
+					border-radius: 0 // before have !important
+
+				.dropdown-list,
+				.dropdown-items
+					border-radius: $button-radius
+
+					a
+						&:first-child
+							border-top-left-radius: $button-radius
+							border-top-right-radius: $button-radius
+
+						&:last-child
+							border-bottom-left-radius: $button-radius
+							border-bottom-right-radius: $button-radius
+
+				+breakpoint(tablet, true)
+					&:hover,
+					&:focus
+						> .dropdown-list,
+						> .dropdown-items
+							margin-top: 20px
+
+				+breakpoint(tablet)
+					display: block
+					text-align: left
+					width: 100%
+
+					a
+						border: 0
+						border-radius: 0 !important
+						display: block
+						margin: 0
+						padding: 15px 40px !important
+						width: 100%
+
+					.dropdown-list,
+					.dropdown-items
+						background: transparentize($black, .9) !important
+						border-radius: 0 !important
+						box-shadow: 0 0 5px transparentize($black, .7) inset
+						height: 0
+						margin: 0
+						position: static
+
+						.nav-link
+							&:hover,
+							&:focus
+								background: transparentize($black, .9) !important
+
+					&:hover,
+					&:focus
+						> .dropdown-list,
+						> .dropdown-items
+							height: auto
+
+		input[type='search']
+			background-color: transparentize($black, .9)
+			border-radius: $button-radius
+			box-shadow: none
+			height: 35px
+
+			&:focus
+				+transition
+				background-color: $white
+				box-shadow: 0 0 10px transparentize($black, .7)
+
+				+breakpoint(tablet)
+					background-color: $white
+					background-position: 10px
+					padding: 5px 35px
+					width: 280px
+
+				+breakpoint(phone)
+					width: 220px
+
+				+breakpoint(smallphone)
+					width: 160px
+
+			+breakpoint(tablet)
+				+transition
+				background-color: transparent
+				background-position: center
+				padding: 20px
+				width: 40px
+
+				&:hover
+					background-color: transparentize($black, .9)
+					cursor: pointer
+
+
+=sidebar
+	+transition
+	align-items: initial !important
+	background: $white
+	box-shadow: 0 0 15px transparentize($black, .7)
+	color: $dark
+	flex-direction: column
+	height: 100%
+	justify-content: flex-start !important
+	left: -100%
+	overflow-y: auto
+	padding: 0 !important
+	position: fixed
+	top: 0
+	width: 320px
+	z-index: 999
+
+	.nav-link,
+	.dropdown > a,
+	.nav-link:last-child
+		border: 0 !important
+		border-radius: 0 !important
+		color: $dark !important
+		justify-content: flex-start
+		margin: 0 !important
+		padding: 15px 40px !important
+		width: 100%
+
+		&:hover,
+		&:focus
+			background: transparentize($black, .9) !important
+			border: 0 !important // before none
+			color: $dark !important
+
+	&::before
+		background: transparentize($black, .3) url('../images/background.png')
+		content: ''
+		height: 200px
+
+	&::after
+		background: $white url('../images/icon.png') no-repeat left / cover
+		border-radius: 50%
+		content: ''
+		height: 95px
+		left: 20px
+		position: absolute
+		top: 10%
+		width: 95px
+
+
++navbars

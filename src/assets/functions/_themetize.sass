@@ -1,0 +1,7 @@
+// get color map
+// @param color $color
+// @param boolean $all
+// @return map
+@function themetize($color, $all: true)
+	$color-pack: (base: $color, light: lighten($color, 15%), dark: darken($color, 15%))
+	@return if($all, map-merge($color-pack, ('snow': transparentize($color, .1), 'transparent': transparentize($color, .5), disappear: transparentize($color, .8))), $color-pack)

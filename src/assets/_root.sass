@@ -1,0 +1,12 @@
+#{":root"}
+	// color variables
+	@each $color-name, $tones in $colors
+		@each $tone-name, $tone in $tones
+			--#{$color-name}#{str-rename($tone-name)}: #{$tone}
+
+	@each $device, $value in $breakpoints
+		--breakpoint-#{$device}: #{$value}
+
+	// Use `inspect` for lists so that quoted items keep the quotes.
+	--font-family-sans-serif: #{inspect($font-family-sans-serif)}
+	--font-family-monospace: #{inspect($font-family-monospace)}

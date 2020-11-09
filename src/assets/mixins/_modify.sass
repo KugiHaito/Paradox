@@ -1,0 +1,5 @@
+// add modifier to component or global
+// @param string $name
+=modify($name)
+	&[class*='--#{$name}']:not([class~='--#{$name}'])
+		@content

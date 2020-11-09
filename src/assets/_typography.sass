@@ -1,0 +1,9 @@
+// Typography system
+@each $el, $properties in $fonts
+	.#{$el}
+		@each $property, $value in $properties
+			@if $value
+				@if $property == font-size
+					+font-resize($value)
+				@else
+					#{$property}: $value

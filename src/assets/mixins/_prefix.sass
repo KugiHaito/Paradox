@@ -1,0 +1,9 @@
+// add prefix properties
+// @param strin $prop
+// @param var $value
+// @param list $prefixes
+=prefix($prop, $value: none, $prefixes: webkit moz ms o, $no-prefix: true)
+	@each $prefix in $prefixes
+		-#{$prefix}-#{$prop}: $value
+	@if $no-prefix
+		#{$prop}: $value

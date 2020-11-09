@@ -1,0 +1,3 @@
+// TODO mixin to apply gradient with auto-color
+=font-gradient($first-color, $second-color, $level: 60, $_colors: (light: $snow-white, dark: $dark))
+	color: if(lightness($first-color) < $level, if(lightness($second-color) < $level, map-get($_colors, light), map-get($_colors, dark)), map-get($_colors, dark))

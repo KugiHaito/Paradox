@@ -1,28 +1,58 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var srcmaps = require('gulp-sourcemaps');
+var plumber = require("gulp-plumber");
+var concat = require("gulp-concat");
 var rename = require("gulp-rename");
-var sourcemaps = require('gulp-sourcemaps');
 
-var path = {
-    'sass': {
-        'src':'./src/**/*.scss',
-        'dist':'./dist/css'
+// gulp config
+const config = {
+    path: {
+        src: './src/**/*.sass',
+        dist: './dist/css',
+        js: {
+            src: './src/js/**/*.js',
+            dist: './dist/js',
+            distName: 'paradox.js'
+        },
+        root: '.',
+    },
+    task: {
+        default: 'sass:default',
+        minified: 'sass:minified',
+        script: 'js:minified'
     }
 }
 
-gulp.task('sass', function() {
-    return gulp.src(path['sass']['src'])
-        .pipe(sourcemaps.init())
-        // output non-minified CSS file
-        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-        .pipe(sourcemaps.write('.'))
-        // output the minified version
-        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-        .pipe(rename({ extname: '.min.css' }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(path['sass']['dist']))
+// default (expanded)
+gulp.task(config.task.default, () => {
+  return gulp.src(config.path.src)
+      .pipe(srcmaps.init())
+      .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+      .pipe(srcmaps.write(config.path.root))
+      .pipe(gulp.dest(config.path.dist))
 });
 
-gulp.task('watch', function() {
-    gulp.watch(path['sass']['src'], gulp.series('sass'))
+// minified
+gulp.task(config.task.minified, () => {
+    return gulp.src(config.path.src)
+        .pipe(srcmaps.init())
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(srcmaps.write(config.path.root))
+        .pipe(gulp.dest(config.path.dist))
+});
+
+// script
+gulp.task(config.task.script, () => {
+    return gulp.src(config.path.js.src)
+        .pipe(plumber())
+        .pipe(concat(config.path.js.distName))
+        // .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest(config.path.js.dist))
+})
+
+// watch
+gulp.task('watch', () => {
+    gulp.watch(config.path.src, gulp.series(config.task.default, config.task.minified))
 });

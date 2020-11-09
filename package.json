@@ -1,37 +1,40 @@
 {
-  "name": "mepaper",
-  "version": "0.1.2",
-  "description": "A simple Front-end Framework based on Material Design",
-  "homepage": "http://mepaper.github.io/Paper",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mepaper/paper.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mepaper/paper/issues"
-  },
-  "files": "dist/",
-  "style": "dist/paper.min.css",
-  "sass": "src/paper.min.scss",
-  "main": "dist/paper.min.js",
-  "keywords": [
-    "mepaper",
-    "paper",
-    "papercss",
-    "css",
-    "sass"
-  ],
-  "authors": [
-    "KugiHaito <kugihaito@gmail.com>"
-  ],
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-cli": "^2.0.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.4",
-    "node-sass": "^4.11.0"
-  }
+	"name": "paradox",
+	"version": "1.1.0",
+	"description": "Front-end framework for developing responsive and modern websites",
+	"homepage": "https://github.com/KugiHaito/Paradox",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KugiHaito/Paradox.git"
+	},
+	"bugs": {
+		"url": "https://github.com/KugiHaito/Paradox/issues"
+	},
+	"files": "dist/",
+	"style": "dist/paradox.min.css",
+	"sass": "src/paradox.sass",
+	"main": "dist/paradox.min.js",
+	"keywords": [
+		"paradox",
+		"paradoxcss",
+		"front-end",
+		"css",
+		"sass",
+		"js"
+	],
+	"authors": [
+		"KugiHaito <kugihaito@gmail.com>"
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"gulp": "^4.0.0",
+		"gulp-cli": "^2.0.1",
+		"gulp-concat": "^2.6.1",
+		"gulp-plumber": "^1.2.1",
+		"gulp-rename": "^1.4.0",
+		"gulp-sass": "^4.0.2",
+		"gulp-sourcemaps": "^2.6.4",
+		"gulp-uglify": "^3.0.2",
+		"node-sass": "^4.11.0"
+	}
 }

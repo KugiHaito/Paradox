@@ -1,0 +1,22 @@
+// add properties with auto color
+// @param map $values
+// @param color $value
+// @param boolean $important
+// @param boolean $hover
+=properties($values, $value, $important: false, $hover: false)
+	@if $hover
+		@if map-has-key($values, hover)
+			@each $property in map-get($values, hover)
+				#{$property}: if($important, map-get($values, value) $value !important, map-get($values, value) $value)
+	@else
+		@if map-has-key($values, properties)
+			@each $property in map-get($values, properties)
+				#{$property}: if($important, map-get($values, value) $value !important, map-get($values, value) $value)
+
+		@if map-has-key($values, auto-color)
+			@if map-get($values, auto-color) != hover
+				+auto-color($value, 60)
+			@else
+				&:hover,
+				&:focus
+					+auto-color($value, 60, true)

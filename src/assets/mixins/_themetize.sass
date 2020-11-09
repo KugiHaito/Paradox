@@ -1,0 +1,39 @@
+// themetization components
+// @param string class
+// @param map properties
+// @param map hover-properties
+// @param map pseudos
+// @param map sub-elements
+=themetize($class: '', $properties: (), $hover-properties: (), $pseudos: (), $sub-elements: ())
+	@each $color-name, $color in $colors
+		@each $tone-name, $tone in $color
+			#{if(&, if($class == '', '&', '&.#{$class}'), '.#{$class}')}-#{$color-name}#{str-rename($tone-name)}
+				@content
+				+properties($properties, $tone)
+
+				@if $hover-properties
+					&:hover,
+					&:focus
+						@content
+						+properties($hover-properties, $tone)
+
+				@if $pseudos
+					@each $pseudo, $properties in $pseudos
+						&:#{$pseudo}
+							@each $property in $properties
+								@if $property == 'auto-color'
+									+auto-color($tone, 60)
+								@else
+									#{$property}: $tone
+
+				@if $sub-elements
+					@each $element, $values in $sub-elements
+						$element: if(map-has-key($values, no-class), $element, unquote('.' + $element))
+
+						#{$element}
+							+properties($values, $tone, true)
+
+							&:hover,
+							&:focus
+								+properties($values, $tone, true, true)
+

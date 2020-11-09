@@ -1,0 +1,20 @@
+// flex
+[class^='flex']
+	display: flex !important
+
+.flex-column,
+.row > .flex-column
+	flex-direction: column !important
+
+.flex-row,
+.row > .flex
+	align-items: center
+	display: flex
+	flex-direction: row !important
+	justify-content: space-between
+
+.flex-wrap
+	flex-wrap: wrap
+
+.flex-nowrap
+	flex-wrap: nowrap

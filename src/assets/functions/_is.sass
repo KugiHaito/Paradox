@@ -1,0 +1,6 @@
+// function to type of
+// @param string $type
+// @param var $var
+// @return boolean
+@function is($type, $var)
+	@return if(type-of($type) == 'list', (type-of($var) == nth($type, 1) or (type-of($var) == nth($type, 2))), type-of($var) == $type)

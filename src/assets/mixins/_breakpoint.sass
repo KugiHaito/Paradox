@@ -1,0 +1,10 @@
+// breaktpoint
+// @param string $point
+// @param boolean $inverse
+=breakpoint($point, $inverse: false)
+	$property: if($inverse, min-width, max-width)
+	@if map-has-key($breakpoints, $point)
+		@media ($property: map-get($breakpoints, $point))
+			@content
+	@else
+		@error 'unknow breakpoint #{$point}'
